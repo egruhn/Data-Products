@@ -1,0 +1,88 @@
+---
+title: "Developing Data Products Project 1"
+author: "Erich Gruhn"
+date: "4/26/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Leaflet Project
+
+Create a web page using R Markdown that features a map created with Leaflet.
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+Your webpage must contain the date that you created the document, and it must contain a map created with Leaflet. We would love to see you show off your creativity!
+```{r load librar}
+library(leaflet)
+```
+
+## My Job
+Show where I work everyday:
+
+```{r Progressive}
+prog_icon <- makeIcon(
+        iconUrl = "https://www.progressive.com/content/images/DomainProgressive/logo/logo-progressive.svg",
+        iconWidth = 50*215/230, iconHeight = 50,
+        iconAnchorX = 50*215/230/2, iconAnchorY = 16)
+
+prog_name <- "<a href='https://www.progressive.com/'>Progressive Insurance</a"
+        prog_map <- leaflet() %>%
+                addTiles() %>%
+                addMarkers(lat = 41.565134, lng = -81.443,
+                icon = prog_icon, popup = prog_name)
+prog_map
+```
+
+## Show where my kids went to school
+
+My eldest went to school here:
+
+```{r Northwestern, echo=FALSE}
+nu_icon <- makeIcon(
+        iconUrl = 
+"data:image/jpeg;base64,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",
+        iconWidth = 50*215/230, iconHeight = 50,
+        iconAnchorX = 50*215/230/2, iconAnchorY = 16)
+
+nu_name <- "<a href='https://www.northwestern.edu/'>Northwestern University</a"
+nu_map <- leaflet() %>%
+        addTiles() %>%
+        addMarkers(lat = 42.055984, lng = -87.675171,
+                   icon = nu_icon, popup = nu_name)
+nu_map
+```
+
+My eldest daughter went here:
+
+```{r Marquette, echo = FALSE}
+mu_icon <- makeIcon(
+        iconUrl = "http://grfx.cstv.com/schools/marq/graphics/marq-16-mast-logo.png",
+        iconWidth = 50*215/230, iconHeight = 50,
+        iconAnchorX = 50*215/230/2, iconAnchorY = 16)
+
+mu_name <- "<a href='http://www.marquette.edu'>Marquette University</a"
+mu_map <- leaflet() %>%
+        addTiles() %>%
+        addMarkers(lat = 43.0382, lng = -87.9298,
+                   icon = mu_icon, popup = mu_name)
+mu_map
+```
+
+And my youngest went to this school:
+```{r LUC, echo = FALSE}
+luc_icon <- makeIcon(
+        iconUrl = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAFcAeAMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABQYBAwQCB//EADoQAAIBAwMDAwMBBQUJAQAAAAECAwAEEQUSIQYTMSJBURQyYYEHFUJS0SNDU2JxFyRykZShseHxFv/EABkBAQADAQEAAAAAAAAAAAAAAAABBAUDAv/EACURAAICAgIBAgcAAAAAAAAAAAABAgMEETHwIRKBEzJBUXHB0f/aAAwDAQACEQMRAD8A+40pSgFKUoCo9NRQQ9W9XPsRBHcQAHGAim3Rmx8Akkn81z9LWtr1Hpmq3GtRrNdtf3ELs/3W6q2EVD5TChWGMcnd5Oa9yR6FNNMDo8sn11wLe7ZWYhmyq/2mDyBuxz4H4ra9xpt7crJNpMkb3jQxTs8hiWTfGWAcDAfCgDBz5xQFX02XUIdB6b6oftzX1wx064M44uI5JDHBMfluIyT7qzfip3StOto+sbjQ7mJXsrPTIpbaGVQVmd2YSysvhm9KDPt7YzXRe6np2o2VsL7RpGjSN54oCSCrRruXCDBzxwSAAcYJyMyTrBqF5aR3WmP3I3mWK5WYholQhSd4ww3ccDz70BSNfiaDS+s9OjLNp9jd2j2eST9Oz9tnjQ+wGfA4AfHivoupXsGkadM8cSs0MRMNshClzwFVR+WKqPyRUDI+kXmnrYTaMZbOWQu8Qbcu4MpzL/ny2SDkgj55rWW0WaVO9pMzu9xHH97u8ZUsUZhnKgNgg/51PGaA9dDXN1aX+q6FqPf70UgvIGuMbpI5eXPBI4lEnvwGWrjVUs7/AE7UNWs7/wDd5+tcGJZu4dyr5Kj+YDgsBwPzVroBSlKAUpSgFKUoBWDWawaAg9M1W7urrs/SSzW4JH1nb7K8D+Vjk85GV44qgdT9fa/pvUOoWVrJbCGCYom6DJxgeTmrpZWM8Wpwxm31UGGQs08t8Wt2XB8JvOc58FRj9BVM1Xpm01bqO/uJZbhS13cCUKVCgIiEHOCR9wB4P+lSaGL8FTbsW1oiv9pfUv8Ai2n/AE//ALqS0zr3qG7gkeaS0hiifMt00PpRcfaBnljXBbdJac8gguZ9QguX1GSziDCPbKELEso8/aAP+M4rWmlxWNxHHaiaV5Io7qK3uxtFruUZabHGR7CquXNwqbT73rNJRxZP0qK3+CxDrXXGkBCR751/3W0MfrI/xJD/AAr+KlekupdT1bV0tJXiuLeNG79yibFaT2VPkD5qiM0bwSv3pfopGxPd4/tr9/5Ix7L7cf1qy9CKf/00KzqUkjgft2kP2WqEfxn3c1n022OxJt97/fOkc8jHqjVJqKLTaX+oyawLT9421zEkhDm3s2IUA/a778K34wc/irPVa7dwNVgSTTrOztklykiwmVpOePUABHnPvmrLWyYtn0FKUocxSlKAUpSgFYNZrDeKAgrfUbM66yCa9a6njVDaEbkhA3HcQPsz8k84FfHusrq5t+sdVMF1PFtuiV7crLtJUAkYPBxX1bSYvp9QVRqS27vKzSWRtVi7rEZPvy3IJK8n3qo2Olxan171WkiQTMsLpFBOAQ7tgA8+MY9ueRUmnhzjXKUnxr9nCnR7P0nZaldXOoSalNultreHLt6vUoA/hzjcTxyfxVZistSup/p9t7NeSzyJcQhyzsECZyD5I3HznwK+sda6hc6TZafZQ6W17ZzFYLgq7IApKqF3AgZbJAzx4zVCt+ldQs2t5rnR7yS2tpWnOWVRJkDK+QVxsHqOAcN44zDSfJax8iTi5TfO9G7qfpZdM6bstY069u5RG+yXvZVosnA4/hww2kfkfFa/2UzSHrGNTK5VoJWYFjhjxyfk1fdHnuuqejS19p6xvKVZIpSxSZAVdTlsnBx71AaPZw2X7YLmK2MfaNuzqsYAEeVX04Hx/So9K+xzjkSlVZVZykyZ0++02TWLe2geXvd8kb9WLrgE/wB3uPqOPs24Ue4xirvVVtMR6tFGRqovGkxIJg30u3k+nPo8Djb6vGferVXpmXa/KFKUqDkKUpQClKUAry+dvp8/mvVKApdtDcWetMlvaxAxYe6lt4e6+3yA00jA8j+BVJAx+MxHUFsvTnVVx1QvbNpeWbCGZ4WlSK5OzaWC8gEL5HyR71cuoNMe6srn6bus8infbxzdpbg4xhmwSOODjBxUFYXU1nCtrqAhuo7yWSEwSHAIR3EkmCMIh9CqnPlRnJJqS5XY/m9mij6j1rc6rocUdxcCK8iu1mkgEZMdyAwZQDzs24HGecZzmrTrH7S9HuNAnS0Sdr2eEoIHiICFhjlvBAz7ea49V/Z1Y6mZ5+nLv6aWN9ktpcZKI+A23PJXhh8jniq3H+zrqeS6MBsoo1H9+869s/8ALLf9qGglhWJNvWvOuDtteu7vTNM0qysbyO4lgXZNPcQvsjTgBNowX2gA7vPGB5NWXo/Tom1zV+rY4ilhKp+iTZs7ikAs4U+ASOM+cmtOjdCaNo00T6zONRvCCyQAYiG37iQfOBzyf0q2Q3VzqcIgS3tU7Vw0GoW0xLbY9p+3AwcgoRnjB/ShVyLavKpXPL9zTYQ3cWpW1ndaje3HaXusLi3Qq2BjAkRV5BZTz/WrHXBp2k22nkmBrhyRtBnuHlKj4G4nA/oPiu+oKE2m/ApSlDwKUpQClKUApSlAK47jT4ZLgXKAR3G3b3APuUHOD8jP/wBrspQbKs/TtwLyNJJe/aTXaXNwMbRlI1GSM87nRT8ef9alruC5vfrrOdFis5IgsM8Up7hYg7sjHGOMc81J4rGB8UPbm3yVOHQJdSW3u7m3jsbpY4S67FZWlQ+ptvjBUsvPOH5xgVYrWwgtpGmChp3UK8zAb2AJIBPwMnArrpQSm2KUpQ8ClKUApSlAQMVtrEKvPHMXlk3uYZDuVPUxVBzxwwBIOMIPGc14S51mdJXtO3IgZ4gSoUh1G0nGfG9WB/BGPmlKA3SLre8NGYice/hc7vTjPJGI+fy1aU1K9mtV7RUT3FyY4MqMKoQuM8+4H6Z98UpQHq7udYtbOaeVYBsDHAHHkBR59/8AyecAc7oE1cXqmVl7RwGbjhQxI9OeCQ2CR/KPPkYpQG+2/ef1Z74QQdxjzjO3LBRx742H9W/GOSEa4kIUxpuJA5YMRkZJyT/MSMfAAHyM0oD3CNX7TSOgWeWVcgsGESbOdozg+vjz4OaD99mbJ2KoLcHbgjLbR85wEHx6j8VilAFOusMbYEJPlsHjkeAfY7Tj43DJOK1iPWjcmQjHKqAXG3Abk4B8lWbz7qPHAClAeo5dZUB70xW8MahppAA3AD7sD9EP6kVskTUpoLItjfjdPsfaBllBHB5wrOf9VFKUAzre31LEG7SfaAcvn1e/wPj398UpSgP/2Q==",
+        iconWidth = 50*215/230, iconHeight = 50,
+        iconAnchorX = 50*215/230/2, iconAnchorY = 16)
+
+luc_name <- "<a href='http://www.luc.edu'>University of Loyola at Chicago</a"
+luc_map <- leaflet() %>%
+        addTiles() %>%
+        addMarkers(lat = 41.9999, lng = -87.6578,
+                   icon = luc_icon, popup = luc_name)
+luc_map
+```
